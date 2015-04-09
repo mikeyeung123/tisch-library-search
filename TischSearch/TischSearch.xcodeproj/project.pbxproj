@@ -13,6 +13,7 @@
 		27E828F41AD5FB60003C34C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27E828F31AD5FB60003C34C2 /* Images.xcassets */; };
 		27E828F71AD5FB60003C34C2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27E828F51AD5FB60003C34C2 /* LaunchScreen.xib */; };
 		27E829031AD5FB60003C34C2 /* TischSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E829021AD5FB60003C34C2 /* TischSearchTests.swift */; };
+		27E8290D1AD60810003C34C2 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E8290C1AD60810003C34C2 /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		27E828FC1AD5FB60003C34C2 /* TischSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TischSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E829011AD5FB60003C34C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27E829021AD5FB60003C34C2 /* TischSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TischSearchTests.swift; sourceTree = "<group>"; };
+		27E8290C1AD60810003C34C2 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				27E828EC1AD5FB60003C34C2 /* AppDelegate.swift */,
 				27E828EE1AD5FB60003C34C2 /* ViewController.swift */,
 				27E828F01AD5FB60003C34C2 /* Main.storyboard */,
+				27E8290C1AD60810003C34C2 /* SwiftyJSON.swift */,
 				27E828F31AD5FB60003C34C2 /* Images.xcassets */,
 				27E828F51AD5FB60003C34C2 /* LaunchScreen.xib */,
 				27E828EA1AD5FB60003C34C2 /* Supporting Files */,
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E8290D1AD60810003C34C2 /* SwiftyJSON.swift in Sources */,
 				27E828EF1AD5FB60003C34C2 /* ViewController.swift in Sources */,
 				27E828ED1AD5FB60003C34C2 /* AppDelegate.swift in Sources */,
 			);
@@ -341,6 +345,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TischSearch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -351,6 +356,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TischSearch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
