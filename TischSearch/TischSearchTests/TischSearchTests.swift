@@ -1,6 +1,6 @@
 //
-//  Tisch_Library_SearchTests.swift
-//  Tisch Library SearchTests
+//  TischSearchTests.swift
+//  TischSearchTests
 //
 //  Created by Mike Yeung on 4/8/15.
 //  Copyright (c) 2015 Mike Yeung. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 
-class Tisch_Library_SearchTests: XCTestCase {
+class TischSearchTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
