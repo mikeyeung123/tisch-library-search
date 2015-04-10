@@ -20,7 +20,8 @@ class Book {
     let image: UIImage?
     let language: String?
     
-    init(title: String, authors: [String], publisher: String?, publicationYear: Int?, publicationMonth: Int?, publicationDay: Int?, description: String?, categories: [String]?, imageURL: String?, language: String?) {
+    init(title: String, authors: [String], publisher: String?, publicationYear: Int?, publicationMonth: Int?,
+         publicationDay: Int?, description: String?, categories: [String]?, imageURL: String?, language: String?) {
         
         self.title = title
         self.authors = authors.map {Author(name: $0)}
@@ -36,12 +37,20 @@ class Book {
             self.categories = [String]()
         }
         
-        if let unwrappedImageURL = imageURL, unwrappedNSURL = NSURL(string: unwrappedImageURL), data = NSData(contentsOfURL: unwrappedNSURL), unwrappedImage = UIImage(data: data) {
+        if let unwrappedImageURL = imageURL, unwrappedNSURL = NSURL(string: unwrappedImageURL),
+            data = NSData(contentsOfURL: unwrappedNSURL), unwrappedImage = UIImage(data: data) {
             image = unwrappedImage
         } else {
             image = nil
         }
         
         self.language = language
+    }
+    
+    // Testing only
+    func print() {
+        println("“\(title)” by \(authors.map {$0.normalName()}) published by \(publisher) on \(publicationDate.formattedDate()) in \(categories) in \(language)")
+        println(description)
+        println()
     }
 }

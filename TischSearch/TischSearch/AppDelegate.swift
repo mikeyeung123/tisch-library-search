@@ -23,7 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         
-        let colorless = Book(title: "Colorless Tsukuru Tazaki and His Years of Pilgrimage", authors: ["Haruki Murakami"], publisher: "Random House", publicationYear: 2014, publicationMonth: 8, publicationDay: 12, description: "A mesmerising mystery story about friendship from the internationally bestselling author of Norwegian Wood and 1Q84 Tsukuru Tazaki had four best friends at school. By chance all of their names contained a colour. The two boys were called Akamatsu, meaning ‘red pine’, and Oumi, ‘blue sea’, while the girls’ names were Shirane, ‘white root’, and Kurono, ‘black field’. Tazaki was the only last name with no colour in it. One day Tsukuru Tazaki’s friends announced that they didn't want to see him, or talk to him, ever again. Since that day Tsukuru has been floating through life, unable to form intimate connections with anyone. But then he meets Sara, who tells him that the time has come to find out what happened all those years ago.", categories: ["Fiction"], imageURL: "http://books.google.com/books/content?id=zrlZAwAAQBAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api", language: "English")
+        let parser = GoogleBooksAPIParser()
+        parser.search("Murakami") {books in
+            for book in books! {
+                book.print()
+            }
+        }
         
         
         
