@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270D885F1AD7489A008B58F2 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D885E1AD7489A008B58F2 /* Alamofire.swift */; };
+		270D88611AD74939008B58F2 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D88601AD74939008B58F2 /* Book.swift */; };
+		270D88631AD7523F008B58F2 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D88621AD7523F008B58F2 /* Author.swift */; };
+		270D88651AD76301008B58F2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270D88641AD76301008B58F2 /* Date.swift */; };
 		27E828ED1AD5FB60003C34C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E828EC1AD5FB60003C34C2 /* AppDelegate.swift */; };
 		27E828EF1AD5FB60003C34C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E828EE1AD5FB60003C34C2 /* ViewController.swift */; };
 		27E828F21AD5FB60003C34C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E828F01AD5FB60003C34C2 /* Main.storyboard */; };
@@ -28,6 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		270D885E1AD7489A008B58F2 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
+		270D88601AD74939008B58F2 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		270D88621AD7523F008B58F2 /* Author.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
+		270D88641AD76301008B58F2 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		27E828E71AD5FB60003C34C2 /* TischSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TischSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E828EB1AD5FB60003C34C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27E828EC1AD5FB60003C34C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,8 +92,12 @@
 				27E828EC1AD5FB60003C34C2 /* AppDelegate.swift */,
 				27E828EE1AD5FB60003C34C2 /* ViewController.swift */,
 				27E828F01AD5FB60003C34C2 /* Main.storyboard */,
+				270D88621AD7523F008B58F2 /* Author.swift */,
+				270D88641AD76301008B58F2 /* Date.swift */,
+				270D88601AD74939008B58F2 /* Book.swift */,
 				27E8290E1AD60AD1003C34C2 /* GoogleBooksAPIParser.swift */,
 				27E8290C1AD60810003C34C2 /* SwiftyJSON.swift */,
+				270D885E1AD7489A008B58F2 /* Alamofire.swift */,
 				27E828F31AD5FB60003C34C2 /* Images.xcassets */,
 				27E828F51AD5FB60003C34C2 /* LaunchScreen.xib */,
 				27E828EA1AD5FB60003C34C2 /* Supporting Files */,
@@ -219,8 +231,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				27E8290D1AD60810003C34C2 /* SwiftyJSON.swift in Sources */,
+				270D885F1AD7489A008B58F2 /* Alamofire.swift in Sources */,
+				270D88611AD74939008B58F2 /* Book.swift in Sources */,
+				270D88651AD76301008B58F2 /* Date.swift in Sources */,
 				27E828EF1AD5FB60003C34C2 /* ViewController.swift in Sources */,
 				27E828ED1AD5FB60003C34C2 /* AppDelegate.swift in Sources */,
+				270D88631AD7523F008B58F2 /* Author.swift in Sources */,
 				27E8290F1AD60AD1003C34C2 /* GoogleBooksAPIParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,6 +437,7 @@
 				27E829081AD5FB60003C34C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27E829091AD5FB60003C34C2 /* Build configuration list for PBXNativeTarget "TischSearchTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +446,7 @@
 				27E8290B1AD5FB60003C34C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
