@@ -16,22 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
-        
-        
-        // TESTING
-        
-        
-        
-        let parser = GoogleBooksAPIParser()
-        parser.search("Murakami") {books in
-            for book in books! {
-                book.print()
-            }
-        }
-        
-        
-        
         return true
     }
 

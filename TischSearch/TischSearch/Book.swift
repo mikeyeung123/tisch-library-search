@@ -19,6 +19,9 @@ class Book {
     var categories: [String]
     let image: UIImage?
     let language: String?
+    var ISBN: String?
+    var callNumber: String?
+    var status: String?
     
     init(title: String, authors: [String], publisher: String?, publicationYear: Int?, publicationMonth: Int?,
          publicationDay: Int?, description: String?, categories: [String]?, imageURL: String?, language: String?) {
@@ -26,9 +29,7 @@ class Book {
         self.title = title
         self.authors = authors.map {Author(name: $0)}
         self.publisher = publisher
-        
         publicationDate = Date(year: publicationYear, month: publicationMonth, day: publicationDay)
-        
         self.description = description
         
         if let unwrappedCategories = categories {
@@ -45,12 +46,5 @@ class Book {
         }
         
         self.language = language
-    }
-    
-    // Testing only
-    func print() {
-        println("“\(title)” by \(authors.map {$0.normalName()}) published by \(publisher) on \(publicationDate.formattedDate()) in \(categories) in \(language)")
-        println(description)
-        println()
     }
 }
