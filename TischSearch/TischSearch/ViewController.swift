@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         let parser = GoogleBooksAPIParser()
         let scraper = TuftsScraper()
         scraper.mainVC = self
-        parser.search("Hong Kong") {book in
+        parser.search("boston north end history") {book in
             if book != nil {
                 scraper.search(book!) {book in
                 

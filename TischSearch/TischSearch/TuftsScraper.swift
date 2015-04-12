@@ -14,27 +14,30 @@ class TuftsScraper {
     var mainVC: ViewController?
     
     private func handleNotFound(book: Book, parser: HTMLParser, completion: (Book? -> Void)) {
-        mainVC?.textView.text! += "Not found: '\(book.title)'"
-        if book.authors.count > 0 {
-            mainVC?.textView.text! += " by \(book.authors[0].normalName())"
-        }
-        mainVC?.textView.text! += "\n"
+        //
     }
     
     private func handleFound(book: Book, parser: HTMLParser, completion: (Book? -> Void)) {
-        mainVC?.textView.text! += "Found: '\(book.title)'"
-        if book.authors.count > 0 {
-            mainVC?.textView.text! += " by \(book.authors[0].normalName())"
+        if let table = parser.body?.findChildTagAttr("table", attrName: "id", attrValue: "bibItems") {
+            for row in table.findChildTagsAttr("tr", attrName: "class", attrValue: "bibItemsEntry") {
+                let cols = row.findChildTags("td")
+                let location = cols[0].findChildTag("a")!.contents
+                if location.rangeOfString("Tisch") != nil {
+                    var status = cols[2].rawContents
+                    let range = status.rangeOfString("(?<=-->\\s).+(?=\\s<\\/td)", options: .RegularExpressionSearch)
+                    if range != nil {
+                        status = status.substringWithRange(range!)
+                    }
+                    mainVC?.textView.text! += "'\(book.title)' by \(book.authors[0].normalName()) in \(location) under " + cols[1].findChildTag("a")!.contents + ": " + status + "\n\n"
+                }
+            }
+        } else {
+            mainVC?.textView.text! += "Error: '\(book.title)' by \(book.authors[0].normalName())\n\n"
         }
-        mainVC?.textView.text! += "\n"
     }
     
     private func handleList(book: Book, parser: HTMLParser, completion: (Book? -> Void)) {
-        mainVC?.textView.text! += "List: '\(book.title)'"
-        if book.authors.count > 0 {
-            mainVC?.textView.text! += " by \(book.authors[0].normalName())"
-        }
-        mainVC?.textView.text! += "\n"
+        mainVC?.textView.text! += "Multiple found; not implemented: '\(book.title)' by \(book.authors[0].normalName())\n\n"
     }
     
     func search(book: Book, completion: (Book? -> Void)) {
@@ -63,7 +66,7 @@ class TuftsScraper {
                 }
                 
                 if let body = parser.body {
-                    if let table = body.findChildTagAttr("table", attrName: "id", attrValue: "browse_screen")?.findChildTag("div") {
+                    if let table = body.findChildTagAttr("table", attrName: "id", attrValue: "browse_screen") {
                         if let errorMessage = table.findChildTagAttr("tr", attrName: "class", attrValue: "msg") {
                             self.handleNotFound(book, parser: parser, completion: completion)
                         } else if let cell = table.findChildTags("tr").first?.findChildTag("td") {
@@ -74,6 +77,12 @@ class TuftsScraper {
                             }
                         } else {
                             assertionFailure("Parser error")
+                        }
+                    } else if let errorMessage = body.findChildTagAttr("div", attrName: "class", attrValue: "msg") {
+                        if errorMessage.contents.rangeOfString("therefore not used") != nil {
+                            self.handleNotFound(book, parser: parser, completion: completion)
+                        } else {
+                            self.handleFound(book, parser: parser, completion: completion)
                         }
                     } else {
                         self.handleFound(book, parser: parser, completion: completion)
