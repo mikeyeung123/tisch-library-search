@@ -7,11 +7,8 @@
 //
 
 import Foundation
-import UIKit
 
 class TuftsScraper {
-    
-    var mainVC: ViewController?
     
     private func scrapeRecordFromRow(book: Book, row: HTMLNode) {
         let cols = row.findChildTags("td")
@@ -36,15 +33,10 @@ class TuftsScraper {
             for row in table.findChildTagsAttr("tr", attrName: "class", attrValue: "bibItemsEntry") {
                 scrapeRecordFromRow(book, row: row)
             }
-            // TEST CODE
-            mainVC?.textView.text! += "'\(book.title)' by \(book.authors[0].normalName())\n"
-            for record in book.records {
-                mainVC?.textView.text! += "\(record.location); \(record.callNumber); \(record.status)\n"
-            }
-            mainVC?.textView.text! += "\n"
-            
+            completion(book)
         } else {
-            mainVC?.textView.text! += "Error: '\(book.title)' by \(book.authors[0].normalName())\n\n"
+            // TODO: Handle error better
+            assertionFailure("Scraper error: '\(book.title)' by \(book.authors[0].normalName())")
         }
     }
     
@@ -55,20 +47,17 @@ class TuftsScraper {
                     scrapeRecordFromRow(book, row: row)
                 }
             }
-            // TEST CODE
-            mainVC?.textView.text! += "'\(book.title)' by \(book.authors[0].normalName())\n"
-            for record in book.records {
-                mainVC?.textView.text! += "\(record.location); \(record.callNumber); \(record.status)\n"
-            }
-            mainVC?.textView.text! += "\n"
+            completion(book)
         } else {
-            mainVC?.textView.text! += "List parsing error: '\(book.title)' by \(book.authors[0].normalName())\n\n"
+            // TODO: Handle error better
+            assertionFailure("Scraper error: '\(book.title)' by \(book.authors[0].normalName())")
         }
     }
     
     func search(book: Book, completion: (Book? -> Void)) {
         
-        let title = book.title.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        let title = book.title.stringByReplacingOccurrencesOfString("/", withString: " ")
+            .stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         
         if let author =
             book.authors.first?.invertedName().stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) {

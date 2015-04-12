@@ -25,14 +25,22 @@ class ViewController: UIViewController {
         
         let parser = GoogleBooksAPIParser()
         let scraper = TuftsScraper()
-        scraper.mainVC = self
-        parser.search("chinese americans") {book in
-            if book != nil {
-                scraper.search(book!) {books in
-                
+        parser.search("asian americans") {parserBook in
+            if let unwrappedParserBook = parserBook {
+                scraper.search(unwrappedParserBook) {scraperBook in
+                    if let book = scraperBook {
+                        self.textView.text! += "'\(book.title)' by \(book.authors[0].normalName())\n"
+                        for record in book.records {
+                            self.textView.text! += "\(record.location); \(record.callNumber); \(record.status)\n"
+                        }
+                        self.textView.text! += "\n"
+                    }
                 }
             }
         }
+        
+        
+        
         
         
         

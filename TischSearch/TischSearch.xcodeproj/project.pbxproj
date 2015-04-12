@@ -24,6 +24,7 @@
 		27E829031AD5FB60003C34C2 /* TischSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E829021AD5FB60003C34C2 /* TischSearchTests.swift */; };
 		27E8290D1AD60810003C34C2 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E8290C1AD60810003C34C2 /* SwiftyJSON.swift */; };
 		27E8290F1AD60AD1003C34C2 /* GoogleBooksAPIParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E8290E1AD60AD1003C34C2 /* GoogleBooksAPIParser.swift */; };
+		27F0A0CC1ADB349F00D4543F /* OperationQueues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F0A0CB1ADB349F00D4543F /* OperationQueues.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		27E829021AD5FB60003C34C2 /* TischSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TischSearchTests.swift; sourceTree = "<group>"; };
 		27E8290C1AD60810003C34C2 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		27E8290E1AD60AD1003C34C2 /* GoogleBooksAPIParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleBooksAPIParser.swift; sourceTree = "<group>"; };
+		27F0A0CB1ADB349F00D4543F /* OperationQueues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueues.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				270D88601AD74939008B58F2 /* Book.swift */,
 				27E8290E1AD60AD1003C34C2 /* GoogleBooksAPIParser.swift */,
 				27E2AD261AD8831800950343 /* TuftsScraper.swift */,
+				27F0A0CB1ADB349F00D4543F /* OperationQueues.swift */,
 				27F0A0CA1ADB2FB000D4543F /* Interface */,
 				27F0A0C91ADB2FA000D4543F /* Libraries */,
 				27E828F31AD5FB60003C34C2 /* Images.xcassets */,
@@ -267,6 +270,7 @@
 				27E8290D1AD60810003C34C2 /* SwiftyJSON.swift in Sources */,
 				270D885F1AD7489A008B58F2 /* Alamofire.swift in Sources */,
 				270D88611AD74939008B58F2 /* Book.swift in Sources */,
+				27F0A0CC1ADB349F00D4543F /* OperationQueues.swift in Sources */,
 				274A2FEA1AD87A0A00640C10 /* Language.swift in Sources */,
 				270D88651AD76301008B58F2 /* Date.swift in Sources */,
 				27E2AD271AD8831800950343 /* TuftsScraper.swift in Sources */,
