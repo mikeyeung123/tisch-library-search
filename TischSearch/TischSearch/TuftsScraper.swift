@@ -13,6 +13,20 @@ class TuftsScraper {
     
     var mainVC: ViewController?
     
+    private func scrapeRecordFromRow(book: Book, row: HTMLNode) {
+        let cols = row.findChildTags("td")
+        let location = cols[0].findChildTag("a")!.contents
+        if location.rangeOfString("Tisch") != nil && location.rangeOfString("Media") == nil {
+            let callNumber = cols[1].findChildTag("a")!.contents
+            var status = cols[2].rawContents
+            let range = status.rangeOfString("(?<=-->\\s).+(?=\\s<\\/td)", options: .RegularExpressionSearch)
+            if range != nil {
+                status = status.substringWithRange(range!)
+            }
+            book.records.append((location, callNumber, status))
+        }
+    }
+    
     private func handleNotFound(book: Book, parser: HTMLParser, completion: (Book? -> Void)) {
         //
     }
@@ -20,31 +34,44 @@ class TuftsScraper {
     private func handleFound(book: Book, parser: HTMLParser, completion: (Book? -> Void)) {
         if let table = parser.body?.findChildTagAttr("table", attrName: "id", attrValue: "bibItems") {
             for row in table.findChildTagsAttr("tr", attrName: "class", attrValue: "bibItemsEntry") {
-                let cols = row.findChildTags("td")
-                let location = cols[0].findChildTag("a")!.contents
-                if location.rangeOfString("Tisch") != nil {
-                    var status = cols[2].rawContents
-                    let range = status.rangeOfString("(?<=-->\\s).+(?=\\s<\\/td)", options: .RegularExpressionSearch)
-                    if range != nil {
-                        status = status.substringWithRange(range!)
-                    }
-                    mainVC?.textView.text! += "'\(book.title)' by \(book.authors[0].normalName()) in \(location) under " + cols[1].findChildTag("a")!.contents + ": " + status + "\n\n"
-                }
+                scrapeRecordFromRow(book, row: row)
             }
+            // TEST CODE
+            mainVC?.textView.text! += "'\(book.title)' by \(book.authors[0].normalName())\n"
+            for record in book.records {
+                mainVC?.textView.text! += "\(record.location); \(record.callNumber); \(record.status)\n"
+            }
+            mainVC?.textView.text! += "\n"
+            
         } else {
             mainVC?.textView.text! += "Error: '\(book.title)' by \(book.authors[0].normalName())\n\n"
         }
     }
     
     private func handleList(book: Book, parser: HTMLParser, completion: (Book? -> Void)) {
-        mainVC?.textView.text! += "Multiple found; not implemented: '\(book.title)' by \(book.authors[0].normalName())\n\n"
+        if let citations = parser.body?.findChildTagsAttr("tr", attrName: "class", attrValue: "briefCitRow") {
+            for citation in citations {
+                for row in citation.findChildTagsAttr("tr", attrName: "class", attrValue: "bibItemsEntry") {
+                    scrapeRecordFromRow(book, row: row)
+                }
+            }
+            // TEST CODE
+            mainVC?.textView.text! += "'\(book.title)' by \(book.authors[0].normalName())\n"
+            for record in book.records {
+                mainVC?.textView.text! += "\(record.location); \(record.callNumber); \(record.status)\n"
+            }
+            mainVC?.textView.text! += "\n"
+        } else {
+            mainVC?.textView.text! += "List parsing error: '\(book.title)' by \(book.authors[0].normalName())\n\n"
+        }
     }
     
     func search(book: Book, completion: (Book? -> Void)) {
         
         let title = book.title.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         
-        if let author = book.authors.first?.invertedName().stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) {
+        if let author =
+            book.authors.first?.invertedName().stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) {
             
             let URL = "http://library.tufts.edu/search/q?author=\(author)&title=\(title)&searchscope=2"
             request(.GET, URL).responseString {(request, response, HTML, error) in

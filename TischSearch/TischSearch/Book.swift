@@ -11,6 +11,8 @@ import UIKit
 
 class Book {
     
+    typealias Record = (location: String, callNumber: String, status: String)
+    
     let title: String
     let authors: [Author]
     var publisher: String?
@@ -19,9 +21,7 @@ class Book {
     var categories: [String]
     let image: UIImage?
     let language: String?
-    var ISBN: String?
-    var callNumber: String?
-    var status: String?
+    var records = [Record]()
     
     init(title: String, authors: [String], publisher: String?, publicationYear: Int?, publicationMonth: Int?,
          publicationDay: Int?, description: String?, categories: [String]?, imageURL: String?, language: String?) {
