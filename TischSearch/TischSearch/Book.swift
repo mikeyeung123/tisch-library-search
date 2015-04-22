@@ -13,6 +13,7 @@ class Book {
     
     typealias Record = (location: String, callNumber: String, status: String)
     
+    var ranking: Int
     let title: String
     let authors: [Author]
     var publisher: String?
@@ -23,9 +24,11 @@ class Book {
     let language: String?
     var records = [Record]()
     
-    init(title: String, authors: [String], publisher: String?, publicationYear: Int?, publicationMonth: Int?,
-         publicationDay: Int?, description: String?, categories: [String]?, imageURL: String?, language: String?) {
+    init(ranking: Int, title: String, authors: [String], publisher: String?, publicationYear: Int?,
+         publicationMonth: Int?, publicationDay: Int?, description: String?, categories: [String]?, imageURL: String?,
+         language: String?) {
         
+        self.ranking = ranking
         self.title = title
         self.authors = authors.map {Author(name: $0)}
         self.publisher = publisher

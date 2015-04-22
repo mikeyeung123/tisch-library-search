@@ -53,6 +53,8 @@ class GoogleBooksAPIParser {
             let json = JSON(JSONIn!)
             assert(json["kind"] == "books#volumes", "Google Books JSON error")
             
+            var ranking = 1
+                
             for (key, item) in json["items"] {
                 
                 var title = item["volumeInfo"]["title"].rawString()!
@@ -86,11 +88,13 @@ class GoogleBooksAPIParser {
                 let language =
                 languageFromAbbreviation(item["volumeInfo"]["language"].rawString()!)
                 
-                completionEach(Book(title: title, authors: authors, publisher: publisher,
+                completionEach(Book(ranking: ranking, title: title, authors: authors, publisher: publisher,
                     publicationYear: year, publicationMonth: month,
                     publicationDay: day, description: description,
                     categories: categories, imageURL: image,
                     language: language))
+                
+                ranking++
             }
         }
     }

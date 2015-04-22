@@ -11,7 +11,7 @@ import Foundation
 private let singleton = NSOperationQueue()
 
 extension NSOperationQueue {
-    func sharedInstance() -> NSOperationQueue {
+    class func sharedInstance() -> NSOperationQueue {
         return singleton
     }
 }

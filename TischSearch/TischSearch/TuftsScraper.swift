@@ -10,6 +10,13 @@ import Foundation
 
 class TuftsScraper {
     
+    private func titlesMatch(title: String, row: HTMLNode) -> Bool {
+        if let span = row.findChildTagAttr("span", attrName: "class", attrValue: "briefcitTitle"), anchor = span.findChildTag("a") {
+            return anchor.contents.hasPrefix(title)
+        }
+        return false
+    }
+    
     private func scrapeRecordFromRow(book: Book, row: HTMLNode) {
         let cols = row.findChildTags("td")
         let location = cols[0].findChildTag("a")!.contents
@@ -41,13 +48,20 @@ class TuftsScraper {
     }
     
     private func handleList(book: Book, parser: HTMLParser, completion: (Book? -> Void)) {
+        var found = false
+        let title = book.title
         if let citations = parser.body?.findChildTagsAttr("tr", attrName: "class", attrValue: "briefCitRow") {
             for citation in citations {
-                for row in citation.findChildTagsAttr("tr", attrName: "class", attrValue: "bibItemsEntry") {
-                    scrapeRecordFromRow(book, row: row)
+                if titlesMatch(title, row: citation) {
+                    for row in citation.findChildTagsAttr("tr", attrName: "class", attrValue: "bibItemsEntry") {
+                        scrapeRecordFromRow(book, row: row)
+                    }
+                    found = true
                 }
             }
-            completion(book)
+            if found {
+                completion(book)
+            }
         } else {
             // TODO: Handle error better
             assertionFailure("Scraper error: '\(book.title)' by \(book.authors[0].normalName())")
