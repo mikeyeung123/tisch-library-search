@@ -9,13 +9,23 @@
 import UIKit
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+                        
         // Override point for customization after application launch.
+                        
+        UINavigationBar.appearance().titleTextAttributes =
+            [NSFontAttributeName: UIFont(name: "ProximaNova-Bold", size: 18)!]
+        UIBarButtonItem.appearance().setTitleTextAttributes(
+            [NSFontAttributeName: UIFont(name: "ProximaNova-Regular", size: 18)!], forState: .Normal)
+        UITabBarItem.appearance().setTitleTextAttributes(
+            [NSFontAttributeName: UIFont(name: "ProximaNova-Regular", size: 14)!], forState: .Normal)
+                        
         return true
     }
 
